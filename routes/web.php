@@ -31,6 +31,7 @@ Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 Route::get('/contato', 'ContatoController@contato');
 
 //repassando parametros para a rota
+//nesse caso os parametros são obrigatorios
 Route::get('/contato/{nome}', function(string $nome){
     echo 'estamos aqui! '.$nome;
 });
@@ -38,4 +39,13 @@ Route::get('/contato/{nome}', function(string $nome){
 Route::get('/contato/{nome}/{categoria}', function(string $nome, string $categoria){
     echo 'estamos aqui! '.$nome. ', categoria: '.$categoria
         . ' <select><option value=1>a</option><option value=2>b</option></select>';
+});
+
+//tornar parametros opcionais
+//basta adicionar ? no parametro
+//precisa passar um valor default para a variável da função que recebe os parâmetros
+Route::get('/contato/{nome}/{categoria}/{assunto?}/{mensagem?}', 
+    function(string $nome, string $categoria, string $assunto = "assunto não informado"
+        , string $mensagem = "não informada" ){
+    echo " $nome, $categoria, $assunto, $mensagem ";
 });
