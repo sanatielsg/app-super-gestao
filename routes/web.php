@@ -53,12 +53,17 @@ Route::get('/contato/{nome}', function(string $nome){
 //usando expressões regulares para tratar parâmetros tipados
 //no exemplo se for passado qualquer coisa que não for um int, ao invés de disparar um erro,
 //vai para 404 not found
-Route::get('/contato/{nome}/{categoria_id}', 
-    function(string $nome, 
-            int $categoria_id = 1 //valor padrão se nada for passado 1
-    ){
-        echo "Estamos aqui: $nome, $categoria_id";
-    }
-)->where('categoria_id', '[0-9]+') //expressão regular, + é pelo menos 1 caractere
-->where('nome','[A-Za-z]+')//nome só aceita de A a Z e pelo menos 1 caractere
-;
+// Route::get('/contato/{nome}/{categoria_id}', 
+//     function(string $nome, 
+//             int $categoria_id = 1 //valor padrão se nada for passado 1
+//     ){
+//         echo "Estamos aqui: $nome, $categoria_id";
+//     }
+// )->where('categoria_id', '[0-9]+') //expressão regular, + é pelo menos 1 caractere
+// ->where('nome','[A-Za-z]+')//nome só aceita de A a Z e pelo menos 1 caractere
+// ;
+
+Route::get('/login', function(){return 'Login';});
+Route::get('/clientes',function(){return 'Clientes';});
+Route::get('/fornecedores', function(){return 'Fornecedores';});
+Route::get('/produtos', function(){return 'Produtos';});
