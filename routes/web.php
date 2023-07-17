@@ -24,11 +24,11 @@ Route::get('/', function () {
     quando essa rota for chamada
     Controller@metodoDentroDoController
  */
-Route::get('/', 'PrincipalController@principal');
+// Route::get('/', 'PrincipalController@principal');
 
-Route::get('/sobre-nos', 'SobreNosController@sobreNos');
+// Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
-Route::get('/contato', 'ContatoController@contato');
+// Route::get('/contato', 'ContatoController@contato');
 
 //repassando parametros para a rota
 //nesse caso os parametros são obrigatorios
@@ -71,11 +71,26 @@ Route::get('/contato/{nome}', function(string $nome){
 //defindo agrupamento de rotas de acesso
 
 //essa rota será acessada fora do agrupamento (acesso irrestrito)
-Route::get('/login', function(){return 'Login';});
+// Route::get('/login', function(){return 'Login';});
 
-//estas rotas serão agrupadas e chamadas dentro do prefixo /app (acesso restrito)
+// //estas rotas serão agrupadas e chamadas dentro do prefixo /app (acesso restrito)
+// Route::prefix('/app')->group(function(){
+//     Route::get('/clientes',function(){return 'Clientes';});
+//     Route::get('/fornecedores', function(){return 'Fornecedores';});
+//     Route::get('/produtos', function(){return 'Produtos';});
+// });
+
+//nomeação de rotas
+//rotas site
+//o nome da rota nomeada só funciona internamente, não funciona no endereço (get)
+Route::get('/', 'PrincipalController@principal')->name('site.index');
+Route::get('/sobre-nos', 'SobreNosController@sobreNos')->name('site.sobrenos');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
+Route::get('/login', function(){return 'Login';})->name('site.login');
+
+//rotas app
 Route::prefix('/app')->group(function(){
-    Route::get('/clientes',function(){return 'Clientes';});
-    Route::get('/fornecedores', function(){return 'Fornecedores';});
-    Route::get('/produtos', function(){return 'Produtos';});
+    Route::get('/clientes',function(){return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
+    Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
 });
