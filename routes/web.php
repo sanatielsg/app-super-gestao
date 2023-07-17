@@ -108,3 +108,8 @@ Route::redirect('/rota1', '/rota2');
 Route::get('/rota3', function(){
     return redirect()->route('site.rota1'); //aqui ele manda pra 1 (e a 1 redireciona pra 2)
 })->name('site.rota3');
+
+//rota de fallback - se tentar acessar uma rota inexistente
+Route::fallback(function(){
+    echo 'A página não existe. Clique <a href="/">aqui</a> para voltar para o início.';
+});
