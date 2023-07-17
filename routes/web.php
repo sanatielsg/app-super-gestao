@@ -29,3 +29,13 @@ Route::get('/', 'PrincipalController@principal');
 Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
+
+//repassando parametros para a rota
+Route::get('/contato/{nome}', function(string $nome){
+    echo 'estamos aqui! '.$nome;
+});
+
+Route::get('/contato/{nome}/{categoria}', function(string $nome, string $categoria){
+    echo 'estamos aqui! '.$nome. ', categoria: '.$categoria
+        . ' <select><option value=1>a</option><option value=2>b</option></select>';
+});
