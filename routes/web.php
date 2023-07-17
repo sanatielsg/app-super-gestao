@@ -63,7 +63,19 @@ Route::get('/contato/{nome}', function(string $nome){
 // ->where('nome','[A-Za-z]+')//nome só aceita de A a Z e pelo menos 1 caractere
 // ;
 
+// Route::get('/login', function(){return 'Login';});
+// Route::get('/clientes',function(){return 'Clientes';});
+// Route::get('/fornecedores', function(){return 'Fornecedores';});
+// Route::get('/produtos', function(){return 'Produtos';});
+
+//defindo agrupamento de rotas de acesso
+
+//essa rota será acessada fora do agrupamento (acesso irrestrito)
 Route::get('/login', function(){return 'Login';});
-Route::get('/clientes',function(){return 'Clientes';});
-Route::get('/fornecedores', function(){return 'Fornecedores';});
-Route::get('/produtos', function(){return 'Produtos';});
+
+//estas rotas serão agrupadas e chamadas dentro do prefixo /app (acesso restrito)
+Route::prefix('/app')->group(function(){
+    Route::get('/clientes',function(){return 'Clientes';});
+    Route::get('/fornecedores', function(){return 'Fornecedores';});
+    Route::get('/produtos', function(){return 'Produtos';});
+});
