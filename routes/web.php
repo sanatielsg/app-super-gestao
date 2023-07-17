@@ -94,3 +94,17 @@ Route::prefix('/app')->group(function(){
     Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
     Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
 });
+
+//redirecionamento de rota
+Route::get('/rota1', function(){ echo 'Rota 1 ';})->name('site.rota1');
+Route::get('/rota2', function(){ echo 'Rota 2 ';})->name('site.rota2');
+
+
+//metodo 1 : redirecionando pelo redirect 
+//a /rota3 redireciona pra site.rota1, que aqui redireciona para /rota2
+Route::redirect('/rota1', '/rota2');
+
+//metodo 2: chamando de dentro da função de callback
+Route::get('/rota3', function(){
+    return redirect()->route('site.rota1'); //aqui ele manda pra 1 (e a 1 redireciona pra 2)
+})->name('site.rota3');
