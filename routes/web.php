@@ -92,12 +92,12 @@ Route::get('/sobre-nos', 'SobreNosController@sobreNos')->name('site.sobrenos');
 Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 
-//rotas app
-Route::prefix('/app')->group(function(){
-    Route::get('/clientes',function(){return 'Clientes';})->name('app.clientes');
-    Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
-    Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
-});
+// //rotas app
+// Route::prefix('/app')->group(function(){
+//     Route::get('/clientes',function(){return 'Clientes';})->name('app.clientes');
+//     Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
+//     Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
+// });
 
 //----------------------------------------------------------------
 //redirecionamento de rota
@@ -136,3 +136,12 @@ Route::get('/teste/{p1}/{p2}', 'TesteController@teste');
  //exemplo no TesteController
 
  //-------------------------------------------------------------------
+ /*Blade :motor de renderização de páginas do Laravel */
+
+ //rotas app
+Route::prefix('/app')->group(function(){
+    Route::get('/clientes',function(){return 'Clientes';})->name('app.clientes');
+    //Route::get('/fornecedores', function(){return 'Fornecedores';})->name('app.fornecedores');
+    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
+    Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
+});
