@@ -124,3 +124,15 @@ Route::fallback(function(){
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste');
 
 //-------------------------------------------------------------------
+//passando parametros do controller para a view
+/* 3 formas 
+    * array associativo
+    * Compact()
+    * With()
+ */
+
+ //return view('site.teste'), refere-se a um arquivo teste.blade.php localizado em /resources/views/site
+
+ //exemplo no TesteController
+
+ //-------------------------------------------------------------------
