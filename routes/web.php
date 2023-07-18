@@ -41,6 +41,7 @@ Route::get('/contato/{nome}', function(string $nome){
 //         . ' <select><option value=1>a</option><option value=2>b</option></select>';
 // });
 
+//------------------------------------------------------------------------------------
 //tornar parametros opcionais
 //basta adicionar ? no parametro
 //precisa passar um valor default para a variável da função que recebe os parâmetros
@@ -50,6 +51,7 @@ Route::get('/contato/{nome}', function(string $nome){
 //     echo " $nome, $categoria, $assunto, $mensagem ";
 // });
 
+//------------------------------------------------------------------------------------
 //usando expressões regulares para tratar parâmetros tipados
 //no exemplo se for passado qualquer coisa que não for um int, ao invés de disparar um erro,
 //vai para 404 not found
@@ -62,6 +64,7 @@ Route::get('/contato/{nome}', function(string $nome){
 // )->where('categoria_id', '[0-9]+') //expressão regular, + é pelo menos 1 caractere
 // ->where('nome','[A-Za-z]+')//nome só aceita de A a Z e pelo menos 1 caractere
 // ;
+//------------------------------------------------------------------------------------
 
 // Route::get('/login', function(){return 'Login';});
 // Route::get('/clientes',function(){return 'Clientes';});
@@ -79,6 +82,7 @@ Route::get('/contato/{nome}', function(string $nome){
 //     Route::get('/fornecedores', function(){return 'Fornecedores';});
 //     Route::get('/produtos', function(){return 'Produtos';});
 // });
+//------------------------------------------------------------------------------------
 
 //nomeação de rotas
 //rotas site
@@ -95,6 +99,7 @@ Route::prefix('/app')->group(function(){
     Route::get('/produtos', function(){return 'Produtos';})->name('app.produtos');
 });
 
+//----------------------------------------------------------------
 //redirecionamento de rota
 Route::get('/rota1', function(){ echo 'Rota 1 ';})->name('site.rota1');
 Route::get('/rota2', function(){ echo 'Rota 2 ';})->name('site.rota2');
@@ -108,8 +113,14 @@ Route::redirect('/rota1', '/rota2');
 Route::get('/rota3', function(){
     return redirect()->route('site.rota1'); //aqui ele manda pra 1 (e a 1 redireciona pra 2)
 })->name('site.rota3');
-
+//-------------------------------------------------------------------
 //rota de fallback - se tentar acessar uma rota inexistente
 Route::fallback(function(){
     echo 'A página não existe. Clique <a href="/">aqui</a> para voltar para o início.';
 });
+
+//-------------------------------------------------------------------
+//passando parametros para o controller
+Route::get('/teste/{p1}/{p2}', 'TesteController@teste');
+
+//-------------------------------------------------------------------
