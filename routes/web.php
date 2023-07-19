@@ -148,3 +148,5 @@ Route::prefix('/app')->group(function(){
 //-------------------------------------------------------------------
 //adicionando extensão laravel-blade no vscode
 //-------------------------------------------------------------------
+//operador @if, @elseif, @else, @endif --executa se uma operação for verdadeira
+//operador @unless @endunless -- executa caso a condição seja falsa. é o contrario do @if

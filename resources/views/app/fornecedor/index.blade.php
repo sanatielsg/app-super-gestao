@@ -15,10 +15,31 @@
 {{-- @dd($fornecedores); --}}
 {{-- o @dd interrompe a execução do script --}}
 
-@if(count($fornecedores) > 0 && count($fornecedores) < 10)
+{{-- @if(count($fornecedores) > 0 && count($fornecedores) < 10)
     <h3>Existem alguns fornecedores cadastrados</h3>  
 @elseif(count($fornecedores) > 10)
     <h3>Existem vários fornecedores cadastrados</h3>  
 @else
     <h3>Ainda não existem fornecedores cadastrados</h3>  
+@endif --}}
+
+{{-- <br>Status atual: <br>
+@if($fornecedores[0]['status'] == 'S')
+    Status Inativo (1)
 @endif
+
+@unless($fornecedores[0]['status'] == 'S')
+    Status Inativo (2)
+@endunless --}}
+{{-- @isset : se as variaveis estão definidas --}}
+
+@isset($fornecedores)
+    <br>
+    Fornecedor: {{ $fornecedores[1]['nome'] }}
+    <br>
+    Status: {{ $fornecedores[1]['status'] }}
+    <br>
+    @isset($fornecedores[1]['cnpj'])
+        CNPJ: {{ $fornecedores[1]['cnpj'] }}
+    @endisset    
+@endisset
