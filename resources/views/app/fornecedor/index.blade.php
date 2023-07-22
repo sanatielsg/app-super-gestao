@@ -33,7 +33,7 @@
 @endunless --}}
 {{-- @isset : se as variaveis estão definidas --}}
 
-@isset($fornecedores)
+{{-- @isset($fornecedores)
     <br>
     Fornecedor: {{ $fornecedores[1]['nome'] }}
     <br>
@@ -41,5 +41,30 @@
     <br>
     @isset($fornecedores[1]['cnpj'])
         CNPJ: {{ $fornecedores[1]['cnpj'] }}
+
     @endisset    
-@endisset
+@endisset --}}
+
+<br>
+{{-- @empty --}}
+@php
+/*
+    valores entendidos como @empty pelo blade:
+    -''
+    - 0
+    - 0.0
+    - null
+    - false
+    - array() //array vazio
+    - variavel não atribuida
+*/
+@endphp
+
+@isset($fornecedores[0]['cnpj'])
+    CNPJ: {{ $fornecedores[0]['cnpj'] }}<br>
+    @empty($fornecedores[0]['cnpj'])
+        -Vazio<br>
+    @endempty    
+@endisset    
+
+
