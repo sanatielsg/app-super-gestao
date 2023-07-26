@@ -5,11 +5,11 @@
 @php
     //comentário
     /*comentário*/
-    $a = 'testando variáveis PHP';
-    echo "dentro PHP puro variavel $a </br>";
+   // $a = 'testando variáveis PHP';
+  //  echo "dentro PHP puro variavel $a </br>";
 @endphp
 
-<?= $a ?>
+{{-- <?= $a ?> --}}
 
 {{-- comando @dd para imprimir array no blade --}}
 {{-- @dd($fornecedores); --}}
@@ -60,11 +60,50 @@
 */
 @endphp
 
-@isset($fornecedores[0]['cnpj'])
+{{-- @isset($fornecedores[0]['cnpj'])
+    Fornecedor: {{ $fornecedores[0]['nome'] }}
+    <br>
     CNPJ: {{ $fornecedores[0]['cnpj'] }}<br>
+    <br>
     @empty($fornecedores[0]['cnpj'])
         -Vazio<br>
     @endempty    
+@endisset     --}}
+
+{{-- operador condicional de valor default - '??' --}}
+
+
+{{-- @isset($fornecedores)
+    Fornecedor: {{ $fornecedores[$i]['nome'] }}
+    <br>
+    Status: {{$fornecedores[$i]['status']}}
+    <br>
+    CNPJ: {{ $fornecedores[$i]['cnpj'] ?? 'Dados não encontrados'}}<br>
+    <br>
+@endisset     --}}
+
+@php $i = 1; @endphp
+
+@isset($fornecedores)
+    Fornecedor: {{ $fornecedores[$i]['nome'] }}
+    <br>
+    Status: {{$fornecedores[$i]['status']}}
+    <br>
+    CNPJ: {{ $fornecedores[$i]['cnpj'] ?? 'Dados não encontrados'}}<br>
+    <br>
+    Telefone: {{$fornecedores[$i]['ddd']}} {{$fornecedores[$i]['telefone']}}
+
+    @switch($fornecedores[$i]['ddd'])
+        @case('86')
+            Teresina - PI
+            @break
+        @case('85')
+            Fortaleza - CE
+            @break
+        @case('11')
+            São Paulo - SP
+            @break
+        @default
+            Cidade/Estado não encontrados    
+    @endswitch
 @endisset    
-
-
